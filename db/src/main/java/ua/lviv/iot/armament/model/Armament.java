@@ -5,6 +5,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,92 +15,99 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "childType", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue(value = "ParentClass")
 public class Armament {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	@Column
-	private ApartmentType type;
-	@Column
-	private double price;
-	@Column
-	private Power power;
-	@Column
-	private Use use;
-	@Column
-	private User user;
-	@Column
-	private int amount;
+    @Enumerated(EnumType.STRING)
+    @Column
+    private ApartmentType type;
 
-	public Armament() {
-		super();
-	}
+    @Column
+    private double price;
 
-	public Armament(final ApartmentType type ,final double price, final Power power, final Use use, final User user,
-			final int amount) {
-		this.type = type;
-		this.price = price;
-		this.power = power;
-		this.use = use;
-		this.user = user;
-		this.amount = amount;
-	}
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Power power;
 
-	@Override
-	public String toString() {
-		return "Armament [ type= "+ type + ", price=" + price + ", power=" + power + ", use=" + use + ", user=" + user
-				+ ", amount=" + amount + "]";
-	}
+    @Enumerated(EnumType.STRING)
+    @Column(name = "use1")
+    private Use use;
 
-	public final ApartmentType getType() {
-		return type;
-	}
+    @Enumerated(EnumType.STRING)
+    @Column
+    private User user;
+    @Column
+    private int amount;
 
-	public final void setType(final ApartmentType type) {
-		this.type = type;
-	}
+    public Armament() {
+        super();
+    }
 
-	public final double getPrice() {
-		return price;
-	}
+    public Armament(ApartmentType type, double price, Power power, Use use, User user, int amount) {
+        this.type = type;
+        this.price = price;
+        this.power = power;
+        this.use = use;
+        this.user = user;
+        this.amount = amount;
+    }
 
-	public final void setPrice(final double price) {
-		this.price = price;
-	}
+    @Override
+    public String toString() {
+        return "Armament [ type= " + type + ", price=" + price + ", power=" + power + ", use=" + use + ", user=" + user
+                + ", amount=" + amount + "]";
+    }
 
-	public final Power getPower() {
-		return power;
-	}
+    public ApartmentType getType() {
+        return type;
+    }
 
-	public final void setPower(final Power power) {
-		this.power = power;
-	}
+    public void setType(ApartmentType type) {
+        this.type = type;
+    }
 
-	public final Use getUse() {
-		return use;
-	}
+    public double getPrice() {
+        return price;
+    }
 
-	public final void setUse(final Use use) {
-		this.use = use;
-	}
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-	public final User getUser() {
-		return user;
-	}
+    public Power getPower() {
+        return power;
+    }
 
-	public final void setUser(final User user) {
-		this.user = user;
-	}
+    public void setPower(Power power) {
+        this.power = power;
+    }
 
-	public final int getAmount() {
-		return amount;
-	}
+    public Use getUse() {
+        return use;
+    }
 
-	public final void setAmount(final int amount) {
-		this.amount = amount;
-	}
+    public void setUse(Use use) {
+        this.use = use;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 }

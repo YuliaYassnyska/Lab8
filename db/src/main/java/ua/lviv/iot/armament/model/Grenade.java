@@ -27,19 +27,19 @@ public class Grenade extends Armament {
 	}
 
 
-	public final String getOrigin() {
+	public String getOrigin() {
 		return origin;
 	}
 
-	public final void setOrigin(final String origin) {
+	public void setOrigin(final String origin) {
 		this.origin = origin;
 	}
 
-	public final String getName() {
+	public String getName() {
 		return name;
 	}
 
-	public final void setName(final String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
